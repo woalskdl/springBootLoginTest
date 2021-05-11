@@ -1,17 +1,19 @@
 package com.springboot.springtest9.service;
 
-import com.springboot.springtest9.dto.Member;
-import vo.MemberVo;
+import com.springboot.springtest9.domain.Member;
+import com.springboot.springtest9.dto.MemberDto;
+import com.springboot.springtest9.vo.MemberDetailVo;
+import com.springboot.springtest9.vo.MemberNameVo;
 
 public interface Service {
 
-    public Member login(Member member);
+    MemberDetailVo login(MemberDto member);
 
-    public String join(Member member);
+    String join(MemberDto member);
 
-    public MemberVo getName(String id);
+    MemberNameVo getName(String userId);
 
-    public String updateMember(Member member);
+    String updateMember(MemberDto member);
 
-    public String deleteMember(Member member);
+    String deleteMember(MemberDto member);
 }

@@ -1,8 +1,8 @@
 package com.springboot.springtest9.controller;
 
-import com.springboot.springtest9.dto.Member;
+import com.springboot.springtest9.domain.Member;
+import com.springboot.springtest9.dto.MemberDto;
 import com.springboot.springtest9.service.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,17 +25,14 @@ public class Controller {
     }
 
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody Member member){
+    public ResponseEntity login(@RequestBody MemberDto member){
         System.out.println("access Login");
-
-        Member m = service.login(member);
-
 
         return new ResponseEntity(service.login(member), HttpStatus.OK);
     }
 
     @PostMapping("join")
-    public ResponseEntity join(@RequestBody Member member){
+    public ResponseEntity join(@RequestBody MemberDto member){
         System.out.println("access Join");
 
         return new ResponseEntity(service.join(member), HttpStatus.OK);
@@ -43,10 +40,10 @@ public class Controller {
 
     // query string
     @GetMapping("name")
-    public ResponseEntity getName(@RequestParam("id") String id){
+    public ResponseEntity getName(@RequestParam("user-id") String userId){
         System.out.println("access GetName");
 
-        return new ResponseEntity(service.getName(id), HttpStatus.OK);
+        return new ResponseEntity(service.getName(userId), HttpStatus.OK);
     }
 
 //    // path value
@@ -58,14 +55,14 @@ public class Controller {
 //    }
 
     @PutMapping("update")
-    public ResponseEntity updateMember(@RequestBody Member member){
+    public ResponseEntity updateMember(@RequestBody MemberDto member){
         System.out.println("access UpdateMember");
 
         return new ResponseEntity(service.updateMember(member), HttpStatus.OK);
     }
 
     @DeleteMapping("delete")
-    public ResponseEntity deleteMember(@RequestBody Member member){
+    public ResponseEntity deleteMember(@RequestBody MemberDto member){
         System.out.println("access DeleteMember");
 
         return new ResponseEntity(service.deleteMember(member), HttpStatus.OK);

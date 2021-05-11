@@ -1,71 +1,20 @@
 package com.springboot.springtest9.dao;
 
-import com.springboot.springtest9.dto.Member;
+import com.springboot.springtest9.domain.Member;
+import com.springboot.springtest9.dto.MemberDto;
+import com.springboot.springtest9.vo.MemberDetailVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import vo.MemberVo;
+import com.springboot.springtest9.vo.MemberNameVo;
 
 @Mapper
 public interface ServiceDao {
 
-    MemberVo getName(@Param("id") String id);
+    MemberDetailVo selectMember(MemberDto member);
+    void insertMember(MemberDto member);
+    int selectMemberCnt(MemberDto member);
+    MemberNameVo selectMemberName(String userId);
+    int updateMember(MemberDto member);
+    int deleteMember(MemberDto member);
 
-    public Member login(Member member);
-//    {
-//
-//        if(memberList.getMemberList().containsKey(member.getId())){
-//            String id = member.getId();
-//            String pw = member.getPw();
-//            if(memberList.getMemberList().get(id).getPw().equals(member.getPw())){
-//                return id;
-//            }else{
-//                return "check pw";
-//            }
-//        }else{
-//            return "check id";
-//        }
-//    }
-
-    public String join(Member member);
-//    {
-//        if(memberList.getMemberList().containsKey(member.getId())){
-//            return "id already exist";
-//        }else{
-//            memberList.getMemberList().put(member.getId(), member);
-//            return "join completed";
-//        }
-//    }
-
-
-
-
-    public String updateMember(Member member);
-//    {
-//        if(memberList.getMemberList().containsKey(member.getId())){
-//            String id = member.getId();
-//            if(memberList.getMemberList().get(id).getPw().equals(member.getPw())){
-//                memberList.getMemberList().get(id).setName(member.getName());
-//                return "update completed";
-//            }else{
-//                return "check pw";
-//            }
-//        }else{
-//            return "check id";
-//        }
-//    }
-
-    public String deleteMember(Member member);
-//    {
-//        if(memberList.getMemberList().containsKey(member.getId())){
-//            String id = member.getId();
-//            if(memberList.getMemberList().get(id).getPw().equals(member.getPw())){
-//                memberList.getMemberList().remove(id);
-//                return "delete completed";
-//            }else{
-//                return "check pw";
-//            }
-//        }else{
-//            return "check id";
-//        }
-//    }
 }

@@ -8,9 +8,9 @@ import java.util.Date;
 
 @Data
 @RequiredArgsConstructor
-public class Member {
-    @NonNull private String id;
-    @NonNull private String pw;
-    private String name;
-    private Date regdate;
+public class MemberDto {
+    @NonNull private String userId;
+    @NonNull private String userPw;
+    private String userName;
+    private Date regDate;
 }

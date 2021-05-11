@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@MapperScan(basePackages = "com.springboot.springTest9.dao")
+@MapperScan(basePackages = "com.springboot.springtest9.dao")
 public class SpringTest9Application {
 
     public static void main(String[] args) {

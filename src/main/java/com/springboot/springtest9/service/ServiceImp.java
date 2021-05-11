@@ -1,36 +1,58 @@
 package com.springboot.springtest9.service;
 
 import com.springboot.springtest9.dao.ServiceDao;
-import com.springboot.springtest9.dto.Member;
-import vo.MemberVo;
+import com.springboot.springtest9.domain.Member;
+import com.springboot.springtest9.dto.MemberDto;
+import com.springboot.springtest9.vo.MemberDetailVo;
+import com.springboot.springtest9.vo.MemberNameVo;
 
 @org.springframework.stereotype.Service
 public class ServiceImp implements Service{
 
-    private ServiceDao serviceDao;
+    private final ServiceDao serviceDao;
 
-    @Override
-    public Member login(Member member){
-        return serviceDao.login(member);
+    public ServiceImp(ServiceDao serviceDao) {
+        this.serviceDao = serviceDao;
     }
 
     @Override
-    public String join(Member member){
-        return serviceDao.join(member);
+    public MemberDetailVo login(MemberDto member){
+        return serviceDao.selectMember(member);
     }
 
     @Override
-    public MemberVo getName(String id){
-        return serviceDao.getName(id);
+    public String join(MemberDto member){
+
+        int doubleCk = serviceDao.selectMemberCnt(member);
+
+        if(doubleCk == 0){
+            serviceDao.insertMember(member);
+            return "join completed";
+        }else{
+            return "join failed";
+        }
     }
 
     @Override
-    public String updateMember(Member member){
-        return serviceDao.updateMember(member);
+    public MemberNameVo getName(String userId){ return serviceDao.selectMemberName(userId); }
+
+    @Override
+    public String updateMember(MemberDto member){
+        int result = serviceDao.updateMember(member);
+        if(result == 1){
+            return "update completed";
+        }else{
+            return "update failed";
+        }
     }
 
     @Override
-    public String deleteMember(Member member){
-        return serviceDao.updateMember(member);
+    public String deleteMember(MemberDto member){
+        int result = serviceDao.deleteMember(member);
+        if(result == 1){
+            return "delete completed";
+        }else{
+            return "delete failed";
+        }
     }
 }
